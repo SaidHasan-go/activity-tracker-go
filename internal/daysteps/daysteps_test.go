@@ -26,7 +26,7 @@ func (suite *DayStepsTestSuite) TestParsePackage() {
 		wantDuration time.Duration
 		wantErr      bool
 	}{
-		// Корректные значения
+		// Valid cases
 		{
 			name:         "корректный ввод",
 			input:        "678,0h50m",
@@ -48,7 +48,7 @@ func (suite *DayStepsTestSuite) TestParsePackage() {
 			wantDuration: 90 * time.Minute,
 			wantErr:      false,
 		},
-		// Корректные значения продолжительности
+		// Valid cases duration
 		{
 			name:         "продолжительность - только минуты",
 			input:        "1000,30m",
@@ -77,7 +77,7 @@ func (suite *DayStepsTestSuite) TestParsePackage() {
 			wantDuration: 30*time.Minute + 30*time.Second,
 			wantErr:      false,
 		},
-		// Ошибки формата
+		// Format errors
 		{
 			name:         "неверный формат - неправильное количество параметров",
 			input:        "678",
@@ -99,7 +99,7 @@ func (suite *DayStepsTestSuite) TestParsePackage() {
 			wantDuration: 0,
 			wantErr:      true,
 		},
-		// Ошибки в количестве шагов
+		// Steps parsing errors
 		{
 			name:         "неверные шаги - не числовое значение",
 			input:        "abc,1h30m",
@@ -156,7 +156,7 @@ func (suite *DayStepsTestSuite) TestParsePackage() {
 			wantDuration: 0,
 			wantErr:      true,
 		},
-		// Ошибки в продолжительности
+		// Duration parsing errors
 		{
 			name:         "неверный формат продолжительности",
 			input:        "678,invalid",

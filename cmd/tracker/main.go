@@ -16,8 +16,8 @@ func main() {
 		Height: 1.87,
 	}
 
-	// дневная активность
-	input := []string{
+	// Daily activity
+	activityInput := []string{
 		"678,0h50m",
 		"792,1h14m",
 		"1078,1h30m",
@@ -34,11 +34,10 @@ func main() {
 	}
 
 	daySteps.Print()
+	actioninfo.Info(activityInput, &daySteps)
 
-	actioninfo.Info(input, &daySteps)
-
-	// // тренировки
-	actions := []string{
+	// Trainings
+	trainingInput := []string{
 		"3456,Ходьба,3h00m",
 		"something is wrong",
 		"678,Бег,0h5m",
@@ -55,6 +54,5 @@ func main() {
 	fmt.Println("Журнал тренировок")
 
 	trains.Print()
-
-	actioninfo.Info(actions, &trains)
+	actioninfo.Info(trainingInput, &trains)
 }

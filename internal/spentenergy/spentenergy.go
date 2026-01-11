@@ -6,12 +6,12 @@ import (
 	"time"
 )
 
-// Основные константы, необходимые для расчетов.
+// Base constants used for distance and calorie calculations.
 const (
-	mInKm                      = 1000 // количество метров в километре.
-	minInH                     = 60   // количество минут в часе.
-	stepLengthCoefficient      = 0.45 // коэффициент для расчета длины шага на основе роста.
-	walkingCaloriesCoefficient = 0.5  // коэффициент для расчета калорий при ходьбе.
+	mInKm                      = 1000 // number of meters in one kilometer
+	minInH                     = 60   // number of minutes in one hour
+	stepLengthCoefficient      = 0.45 // coefficient for step length based on height
+	walkingCaloriesCoefficient = 0.5  // coefficient for walking calorie calculation
 )
 
 var (
@@ -23,7 +23,6 @@ var (
 )
 
 func WalkingSpentCalories(steps int, weight, height float64, duration time.Duration) (float64, error) {
-	// TODO: реализовать функцию
 	if steps <= 0 {
 		return 0, ErrSteps
 	}
@@ -49,7 +48,6 @@ func WalkingSpentCalories(steps int, weight, height float64, duration time.Durat
 }
 
 func RunningSpentCalories(steps int, weight, height float64, duration time.Duration) (float64, error) {
-	// TODO: реализовать функцию
 	if steps <= 0 {
 		return 0, ErrSteps
 	}
