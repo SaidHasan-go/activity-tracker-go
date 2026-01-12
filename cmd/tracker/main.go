@@ -3,10 +3,10 @@ package main
 import (
 	"fmt"
 
-	"github.com/SaidHasan-go/activity-tracker-go/internal/actioninfo"
-	"github.com/SaidHasan-go/activity-tracker-go/internal/daysteps"
-	"github.com/SaidHasan-go/activity-tracker-go/internal/personaldata"
-	"github.com/SaidHasan-go/activity-tracker-go/internal/trainings"
+	"github.com/MaximK0valev/activity-tracker-go/internal/actioninfo"
+	"github.com/MaximK0valev/activity-tracker-go/internal/daysteps"
+	"github.com/MaximK0valev/activity-tracker-go/internal/personaldata"
+	"github.com/MaximK0valev/activity-tracker-go/internal/trainings"
 )
 
 func main() {

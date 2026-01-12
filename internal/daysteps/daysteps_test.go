@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/SaidHasan-go/activity-tracker-go/internal/personaldata"
+	"github.com/MaximK0valev/activity-tracker-go/internal/personaldata"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"

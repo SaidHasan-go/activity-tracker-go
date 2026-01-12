@@ -7,15 +7,20 @@ import (
 	"strings"
 	"time"
 
-	"github.com/SaidHasan-go/activity-tracker-go/internal/personaldata"
-	"github.com/SaidHasan-go/activity-tracker-go/internal/spentenergy"
+	"github.com/MaximK0valev/activity-tracker-go/internal/personaldata"
+	"github.com/MaximK0valev/activity-tracker-go/internal/spentenergy"
 )
 
 var (
+	// ErrInvalidFormat indicates that the training input has an invalid format.
 	ErrinvalidFormat = errors.New("Invalid Format")
-	ErrUnkownType    = errors.New("неизвестный тип тренировки")
+
+	// ErrUnknownType indicates that the training type is not supported.
+	ErrUnkownType = errors.New("неизвестный тип тренировки")
 )
 
+// Training represents a single training session,
+// including its type, duration, steps, and personal parameters.
 type Training struct {
 	Steps        int
 	TrainingType string
@@ -23,6 +28,8 @@ type Training struct {
 	personaldata.Personal
 }
 
+// Parse parses a training record in the format
+// "steps,training_type,duration" and populates the Training fields.
 func (t *Training) Parse(datastring string) (err error) {
 	slice := strings.Split(datastring, ",")
 	if len(slice) != 3 {
@@ -47,8 +54,9 @@ func (t *Training) Parse(datastring string) (err error) {
 	return nil
 }
 
+// ActionInfo returns a formatted summary of the training session,
+// including distance, average speed, and burned calories.
 func (t Training) ActionInfo() (string, error) {
-	// TODO: реализовать функцию
 	distanc := spentenergy.Distance(t.Steps, t.Height)
 	meanSpeed := spentenergy.MeanSpeed(t.Steps, t.Height, t.Duration)
 	calorie := 0.0

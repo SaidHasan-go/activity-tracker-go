@@ -7,20 +7,23 @@ import (
 	"strings"
 	"time"
 
-	"github.com/SaidHasan-go/activity-tracker-go/internal/personaldata"
-	"github.com/SaidHasan-go/activity-tracker-go/internal/spentenergy"
+	"github.com/MaximK0valev/activity-tracker-go/internal/personaldata"
+	"github.com/MaximK0valev/activity-tracker-go/internal/spentenergy"
 )
 
-var (
-	ErrinvalidFormat = errors.New("Invalid Format")
-)
+// ErrInvalidFormat indicates that the input data has an invalid format.
+var ErrinvalidFormat = errors.New("Invalid Format")
 
+// DaySteps represents daily walking activity including steps count,
+// duration, and personal parameters required for calculations.
 type DaySteps struct {
 	Steps    int
 	Duration time.Duration
 	personaldata.Personal
 }
 
+// Parse parses a single daily activity record in the format "steps,duration"
+// and populates the DaySteps fields.
 func (ds *DaySteps) Parse(datastring string) (err error) {
 	slice := strings.Split(datastring, ",")
 	if len(slice) != 2 {
@@ -43,6 +46,8 @@ func (ds *DaySteps) Parse(datastring string) (err error) {
 	return nil
 }
 
+// ActionInfo returns a formatted summary of the daily activity,
+// including distance and burned calories.
 func (ds DaySteps) ActionInfo() (string, error) {
 	distanc := spentenergy.Distance(ds.Steps, ds.Height)
 	calorie, err := spentenergy.WalkingSpentCalories(ds.Steps, ds.Height, ds.Weight, ds.Duration)

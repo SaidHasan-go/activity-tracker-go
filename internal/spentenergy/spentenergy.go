@@ -6,7 +6,6 @@ import (
 	"time"
 )
 
-// Base constants used for distance and calorie calculations.
 const (
 	mInKm                      = 1000 // number of meters in one kilometer
 	minInH                     = 60   // number of minutes in one hour
@@ -15,13 +14,24 @@ const (
 )
 
 var (
-	ErrSteps    = errors.New("Incorrect steps parameter")
+	// ErrSteps indicates an invalid steps value.
+	ErrSteps = errors.New("Incorrect steps parameter")
+
+	// ErrDuration indicates an invalid duration value.
 	ErrDuration = errors.New("Incorrect duration parameter")
-	ErrCalor    = errors.New("Invalid calorie parameter")
-	ErrWeight   = errors.New("Incorrect weight parameter")
-	ErrHeight   = errors.New("Incorrect height parameter")
+
+	// ErrCalor indicates an invalid calorie calculation result.
+	ErrCalor = errors.New("Invalid calorie parameter")
+
+	// ErrWeight indicates an invalid weight value.
+	ErrWeight = errors.New("Incorrect weight parameter")
+
+	// ErrHeight indicates an invalid height value.
+	ErrHeight = errors.New("Incorrect height parameter")
 )
 
+// WalkingSpentCalories calculates calories burned while walking
+// based on steps, body parameters, and activity duration.
 func WalkingSpentCalories(steps int, weight, height float64, duration time.Duration) (float64, error) {
 	if steps <= 0 {
 		return 0, ErrSteps
@@ -47,6 +57,8 @@ func WalkingSpentCalories(steps int, weight, height float64, duration time.Durat
 	return calories * walkingCaloriesCoefficient, nil
 }
 
+// RunningSpentCalories calculates calories burned while running
+// based on steps, body parameters, and activity duration.
 func RunningSpentCalories(steps int, weight, height float64, duration time.Duration) (float64, error) {
 	if steps <= 0 {
 		return 0, ErrSteps
@@ -64,6 +76,8 @@ func RunningSpentCalories(steps int, weight, height float64, duration time.Durat
 	return (weight * meanSpeed * duration.Minutes()) / minInH, nil
 }
 
+// MeanSpeed returns the average speed in km/h based on steps,
+// height, and activity duration.
 func MeanSpeed(steps int, height float64, duration time.Duration) float64 {
 	if steps <= 0 || height <= 0 || duration <= 0 {
 		return 0
@@ -73,6 +87,8 @@ func MeanSpeed(steps int, height float64, duration time.Duration) float64 {
 	return distanc / duration.Hours()
 }
 
+// Distance calculates the distance in kilometers based on
+// the number of steps and user's height.
 func Distance(steps int, height float64) float64 {
 	if steps <= 0 || height <= 0 {
 		return 0
